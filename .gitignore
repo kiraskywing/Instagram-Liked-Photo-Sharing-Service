@@ -107,4 +107,4 @@ dist
 db.sqlite3
 
 # user images
-static/images/posts/*
+static/images/

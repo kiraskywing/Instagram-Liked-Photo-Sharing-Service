@@ -105,3 +105,6 @@ dist
 
 # dbfile
 db.sqlite3
+
+# user images
+static/images/posts/*

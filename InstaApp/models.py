@@ -5,7 +5,7 @@ from imagekit.models import ProcessedImageField
 class Post(models.Model):
     title = models.TextField(blank=True, null=True)
     image = ProcessedImageField(
-        upload_to = 'statics/images/posts',
+        upload_to = 'static/images/posts',
         format = 'JPEG',
         options = {'quality':100},
         blank = True,

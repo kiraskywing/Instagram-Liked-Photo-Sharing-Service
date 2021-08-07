@@ -28,6 +28,9 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse("post_detail", args=[str(self.id)])
+    
+    def get_like_count(self):
+        return self.likes.count()
 
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='likes')

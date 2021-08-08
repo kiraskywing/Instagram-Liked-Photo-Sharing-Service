@@ -20,7 +20,7 @@ from InstaApp.views import SignUp
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('instaProject/', include('InstaApp.urls')),
+    path('', include('InstaApp.urls')),
     path('auth/', include('django.contrib.auth.urls')),
     path('auth/signup', SignUp.as_view(), name='signup'),
 ]

@@ -108,3 +108,6 @@ db.sqlite3
 
 # user images
 static/images/
+
+# accounts
+accounts.txt

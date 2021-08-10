@@ -147,23 +147,6 @@ function follow_user(success_cb, error_cb, type) {
     });
 }
 
-
-// function update_follow_view(data) {
-//     console.log('calling update_follow_view');
-//     console.log('data',data);
-//     var $button = $('.follow-toggle__container .btn');
-//     $button.addClass('unfollow-user').removeClass('follow-user');
-//     $button.text('Unfollow');
-// }
-
-// function update_unfollow_view(data) {
-//     console.log('calling update_unfollow_view');
-//     console.log('data',data);
-//     var $button = $('.follow-toggle__container .btn');
-//     $button.addClass('follow-user').removeClass('unfollow-user');
-//     $button.text('Follow');
-// }
-
 function update_follow_view(data) {
     console.log('calling update_follow_view');
     console.log('data',data);

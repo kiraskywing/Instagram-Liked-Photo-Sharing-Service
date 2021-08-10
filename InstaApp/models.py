@@ -47,6 +47,9 @@ class UserConnection(models.Model):
         InstaUser,
         on_delete=models.CASCADE,
         related_name="friend_set")
+    
+    # class Meta:
+    #     unique_together = ("creator", "following")
 
     def __str__(self):
         return self.creator.username + ' follows ' + self.following.username

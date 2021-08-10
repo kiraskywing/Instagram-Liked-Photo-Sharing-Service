@@ -27,6 +27,10 @@ class InstaUser(AbstractUser):
         followers = UserConnection.objects.filter(following=self)
         return followers.filter(creator=user).exists()
 
+    def get_userPosts(self):
+        posts = Post.objects.filter(author=self).order_by('-posted_on')
+        return posts
+
     def get_absolute_url(self):
         return reverse('profile', args=[str(self.id)])
 
@@ -57,6 +61,7 @@ class Post(models.Model):
         null = True,
         )
     author = models.ForeignKey(InstaUser, on_delete=models.CASCADE, related_name='my_posts')
+    posted_on = models.DateTimeField(auto_now_add=True, editable=False)
     
     def get_absolute_url(self):
         return reverse("post_detail", args=[str(self.id)])

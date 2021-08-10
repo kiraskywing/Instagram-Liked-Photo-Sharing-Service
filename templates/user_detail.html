@@ -48,7 +48,7 @@
 
     <div class="profile__body">
         <div class="row">
-        {% for post in object.my_posts.all %}
+        {% for post in object.get_userPosts %}
             <div class="col-xs-4">
                 <div class="picture-square" style="background-image: url(/{{ post.image }}); background-size: contain;">
                     <a href="{% url 'post_detail' post.pk %}">

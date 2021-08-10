@@ -23,7 +23,7 @@ class PostsView(LoginRequiredMixin, ListView):
         users = {current_user}
         for conn in UserConnection.objects.filter(creator=current_user).select_related('following'):
             users.add(conn.following)
-        return Post.objects.filter(author__in=users)
+        return Post.objects.filter(author__in=users).order_by('-posted_on')
 
 class PostDetailView(LoginRequiredMixin, DetailView):
     model = Post
@@ -33,8 +33,12 @@ class PostDetailView(LoginRequiredMixin, DetailView):
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     template_name = 'post_create.html'
-    fields = '__all__'
+    fields = ['title', 'image']
     login_url = 'login'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 class PostUpdateView(LoginRequiredMixin, UpdateView):
     model = Post

@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import include, path
 
 from InstaApp.views import (HelloWorld, PostsView, PostDetailView, PostCreateView, 
-                            PostUpdateView, PostDeleteView, addLike, UserDetailView)
+                            PostUpdateView, PostDeleteView, addLike, UserDetailView,
+                            toggleFollow)
 
 urlpatterns = [
     path('helloworld', HelloWorld.as_view(), name='helloworld'),
@@ -28,4 +29,5 @@ urlpatterns = [
     path('post/delete/<int:pk>/', PostDeleteView.as_view(), name='post_delete'),
     path('like', addLike, name='addLike'),
     path('user/<int:pk>/', UserDetailView.as_view(), name='user_detail'),
+    path('togglefollow', toggleFollow, name='togglefollow'),
 ]

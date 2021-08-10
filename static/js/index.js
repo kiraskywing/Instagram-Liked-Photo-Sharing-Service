@@ -146,28 +146,31 @@ function follow_user(success_cb, error_cb, type) {
       error: function(error) { error_cb(error); }
     });
 }
-  
+
 function update_follow_view(data) {
     console.log('calling update_follow_view');
     console.log('data',data);
     var $button = $('.follow-toggle__container .btn');
-    $button.addClass('unfollow-user').removeClass('follow-user');
-    $button.text('Unfollow');
+    var $followers = $('.follower_count');
+    var followers = parseInt($followers.text());
+
+    if (data.type === 'follow') {
+        $button.addClass('unfollow-user').removeClass('follow-user');
+        $button.text('Unfollow');
+        followers += 1;
+    } else if (data.type === 'unfollow') {
+        $button.addClass('follow-user').removeClass('unfollow-user');
+        $button.text('Follow');
+        followers -= 1;
+    }
+
+    $followers.text(followers);
 }
 
-function update_unfollow_view(data) {
-    console.log('calling update_unfollow_view');
-    console.log('data',data);
-    var $button = $('.follow-toggle__container .btn');
-    $button.addClass('follow-user').removeClass('unfollow-user');
-    $button.text('Follow');
-}
+$('.follow-toggle__container').on('click', '.follow-user', function() {
+    follow_user.call(this, update_follow_view, error_cb, 'follow');
+});
 
-
-// $('.follow-toggle__container').on('click', '.follow-user', function() {
-//     follow_user.call(this, update_follow_view, error_cb, 'follow');
-// });
-
-// $('.follow-toggle__container').on('click', '.unfollow-user', function() {
-//     follow_user.call(this, update_unfollow_view, error_cb, 'unfollow');
-// });
+$('.follow-toggle__container').on('click', '.unfollow-user', function() {
+    follow_user.call(this, update_follow_view, error_cb, 'unfollow');
+});

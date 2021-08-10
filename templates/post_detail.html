@@ -18,17 +18,14 @@
             <img class="card__main-image" src="/{{object.image}}" width='1000', height='1000'>
         </div>
         <div class="comments-portion">
-            <div class="likes-timestamp-row">
-                <div class="likes">
-                    {% if object.get_like_count %}
-                        {{ object.get_like_count }} like{% if object.get_like_count > 1 %}s{% endif %}
-                    {% endif %}
-                </div>
-                <div class="timestamp">
-                    {% comment %} {{ object.posted_on|timesince }} {% endcomment %}
-                </div>
-            </div>
             <ul class="comment-list">
+                <li class="comment-list__comment">
+                    <a class="user" href="{% url 'user_detail' object.author.pk %}">
+                        {{ object.author.username }}
+                    </a>
+                    <span class="comment">{{ object.title | safe }}</span>
+                    {% comment %} <span class="comment">{{ object.title | parse_hashtags | safe }}</span> {% endcomment %}
+                </li>
                 {% comment %} {% for comment in object.comments.all %}
                 <li class="comment-list__comment">
                     <a href="{% url 'profile' comment.user.pk %}" class="user">
@@ -38,6 +35,16 @@
                 </li>
                 {% endfor %} {% endcomment %}
             </ul>
+            <div class="likes-timestamp-row">
+                <div class="likes">
+                    {% if object.get_like_count %}
+                        {{ object.get_like_count }} like{% if object.get_like_count > 1 %}s{% endif %}
+                    {% endif %}
+                </div>
+                <div class="timestamp">
+                    {{ object.posted_on | timesince }}
+                </div>
+            </div>
             <section class="input-row">
                 <i class="fa {% has_user_liked_post post user %} submit-like" aria-hidden="true"></i>
                 <div class="hidden-data {{ object.pk }}" style="display: none;">

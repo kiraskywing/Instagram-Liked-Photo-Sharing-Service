@@ -27,6 +27,10 @@ class InstaUser(AbstractUser):
         followers = UserConnection.objects.filter(following=self)
         return followers.filter(creator=user).exists()
 
+    def get_userPosts(self):
+        posts = Post.objects.filter(author=self).order_by('-posted_on')
+        return posts
+
     def get_absolute_url(self):
         return reverse('profile', args=[str(self.id)])
 

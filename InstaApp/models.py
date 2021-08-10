@@ -57,6 +57,7 @@ class Post(models.Model):
         null = True,
         )
     author = models.ForeignKey(InstaUser, on_delete=models.CASCADE, related_name='my_posts')
+    posted_on = models.DateTimeField(auto_now_add=True, editable=False)
     
     def get_absolute_url(self):
         return reverse("post_detail", args=[str(self.id)])

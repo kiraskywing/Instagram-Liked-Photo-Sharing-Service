@@ -62,6 +62,12 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     template_name = 'user_detail.html'
     login_url = 'login'
 
+class EditProfile(LoginRequiredMixin, UpdateView):
+    model = InstaUser
+    template_name = 'edit_profile.html'
+    fields = ['profile_pic', 'username']
+    login_url = 'login'
+
 @ajax_request
 def addLike(request):
     post_pk = request.POST.get('post_pk')

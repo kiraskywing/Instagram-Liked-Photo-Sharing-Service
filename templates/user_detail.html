@@ -18,7 +18,7 @@
                     <h1 class="username">{{ object.username }}</h1>
                     {% if user == object %}
                         {% comment %} <a class="edit-desktop" href="{% url 'edit_profile' object.pk %}"> {% endcomment %}
-                        <a class="edit-desktop" href="">
+                        <a class="edit-desktop" href="{% url 'edit_profile' object.pk %}">
                             <button class="edit-profile">Edit Profile</button>
                         </a>
                     {% else %}

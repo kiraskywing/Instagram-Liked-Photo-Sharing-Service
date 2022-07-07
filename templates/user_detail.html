@@ -17,7 +17,6 @@
                 <div class="name-buttons">
                     <h1 class="username">{{ object.username }}</h1>
                     {% if user == object %}
-                        {% comment %} <a class="edit-desktop" href="{% url 'edit_profile' object.pk %}"> {% endcomment %}
                         <a class="edit-desktop" href="{% url 'edit_profile' object.pk %}">
                             <button class="edit-profile">Edit Profile</button>
                         </a>
@@ -41,14 +40,14 @@
                             <li class="stats__count"><span>{{ object.my_posts.count }}</span><br> posts</li>
                         </div>
                         <div class="col-xs-4">
-                            <a href="/" style="text-decoration: none; color: black;">
+                            <a href="{% url 'follower' object.pk %}" style="text-decoration: none; color: black;">
                                 <li class="stats__count">
                                     <span class="follower_count" id="follower_id">{{ object.get_followers.count }}</span><br> followers
                                 </li>
                             </a>
                         </div>
                         <div class="col-xs-4">
-                            <a href="/" style="text-decoration: none; color: black;">
+                            <a href="{% url 'following' object.pk %}" style="text-decoration: none; color: black;">
                                 <li class="stats__count">
                                     <span class="following_count" id="following_id">{{ object.get_connections.count }}</span><br> followings
                                 </li>

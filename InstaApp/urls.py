@@ -18,7 +18,7 @@ from django.urls import include, path
 
 from InstaApp.views import (HelloWorld, PostsView, PostDetailView, PostCreateView, 
                             PostUpdateView, PostDeleteView, addLike, UserDetailView,
-                            toggleFollow)
+                            toggleFollow, addComment)
 
 urlpatterns = [
     path('helloworld', HelloWorld.as_view(), name='helloworld'),
@@ -30,4 +30,5 @@ urlpatterns = [
     path('like', addLike, name='addLike'),
     path('user/<int:pk>/', UserDetailView.as_view(), name='user_detail'),
     path('togglefollow', toggleFollow, name='togglefollow'),
+    path('comment', addComment, name='addComment'),
 ]

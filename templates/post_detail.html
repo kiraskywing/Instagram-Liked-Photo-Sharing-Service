@@ -26,14 +26,14 @@
                     <span class="comment">{{ object.title | safe }}</span>
                     {% comment %} <span class="comment">{{ object.title | parse_hashtags | safe }}</span> {% endcomment %}
                 </li>
-                {% comment %} {% for comment in object.comments.all %}
+                {% for comment in object.comments.all %}
                 <li class="comment-list__comment">
-                    <a href="{% url 'profile' comment.user.pk %}" class="user">
+                    <a href="{% url 'user_detail' comment.user.pk %}" class="user">
                         {{ comment.user.username }}
                     </a>
                     <span class="comment">{{ comment.comment }}</span>
                 </li>
-                {% endfor %} {% endcomment %}
+                {% endfor %}
             </ul>
             <div class="likes-timestamp-row">
                 <div class="likes">

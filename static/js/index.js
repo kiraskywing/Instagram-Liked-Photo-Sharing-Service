@@ -106,21 +106,22 @@ function create_comment(success_cb, error_cb) {
 function comment_update_view(data) {
     console.log(data);
     var $post = $('.hidden-data.' + data.post_pk);
-    var commentHTML = '<li class="comment-list__comment"><a class="user"> ' + data.commenter_info.username + '</a> <span class="comment">'
+    var commentHTML = '<li class="comment-list__comment"><a href="/user/' + data.commenter_info.user_pk + '/" class="user"> '
+                    + '<img class="picture-circle--small" src="/' + data.commenter_info.user_profile_pic + '"> '
+                    + data.commenter_info.username + '</a> <span class="comment">'
                     + data.commenter_info.comment_text +'</span></li>'
   
     $post.closest('.view-update').find('.comment-list').append(commentHTML);
-  }
+}
   
-  
-  $('.add-comment').on('keyup', function(e) {
+$('.add-comment').on('keyup', function(e) {
     if (enterPressed(e)) {
-      if (validComment($(this).val())) {
-        create_comment.call(this, comment_update_view, error_cb);
-        $(this).val('');
-      }
+        if (validComment($(this).val())) {
+            create_comment.call(this, comment_update_view, error_cb);
+            $(this).val('');
+        }
     }
-  });
+});
   
 
 /*

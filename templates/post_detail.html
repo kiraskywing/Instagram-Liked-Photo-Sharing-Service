@@ -26,9 +26,12 @@
                     <span class="comment">{{ object.title | safe }}</span>
                     {% comment %} <span class="comment">{{ object.title | parse_hashtags | safe }}</span> {% endcomment %}
                 </li>
-                {% for comment in object.comments.all %}
+                {% for comment in object.comments.all|dictsortreversed:"posted_on"|slice:":10" %}
                 <li class="comment-list__comment">
                     <a href="{% url 'user_detail' comment.user.pk %}" class="user">
+                        {% if comment.user.profile_pic %}
+                            <img class="picture-circle--small" src="/{{ comment.user.profile_pic }}">
+                        {% endif %}
                         {{ comment.user.username }}
                     </a>
                     <span class="comment">{{ comment.comment }}</span>

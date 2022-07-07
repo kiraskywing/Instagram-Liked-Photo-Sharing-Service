@@ -158,9 +158,13 @@ def addComment(request):
         comment.save()
 
         username = request.user.username
+        user_pk = request.user.pk
+        user_profile_pic = str(request.user.profile_pic)
 
         commenter_info = {
+            'user_pk': user_pk,
             'username': username,
+            'user_profile_pic': user_profile_pic,
             'comment_text': comment_text
         }
 
